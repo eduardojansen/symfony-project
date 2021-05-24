@@ -170,7 +170,7 @@ curl --request POST \
 
 
 
-**People**
+**Shiporder**
 ----
   Retorna um JSON com todos as encomendas.
 
