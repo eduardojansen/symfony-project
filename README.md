@@ -9,58 +9,58 @@
 
 Clonar o repositório
 ```
-$ git clone https://github.com/eduardojansen/symfony-project.git
+git clone https://github.com/eduardojansen/symfony-project.git
 ```
 
 Acessar o diretório da aplicação
 ```
-$ cd symfony-project
+cd symfony-project
 ```
 
 Criar containers do docker
 ```
-$ docker-compose up --build
+docker-compose up --build
 ```
 
 Instalar dependências do projeto
 ```
-$ docker-compose run --rm php74-container composer install --ignore-platform-reqs
+docker-compose run --rm php74-container composer install --ignore-platform-reqs
 ```
 
 Criar banco de dados
 ```
-$ docker-compose run --rm php bin/console doctrine:database:create
+docker-compose run --rm php bin/console doctrine:database:create
 ```
 
 Executar migration
 ```
-$ docker-compose run --rm php bin/console doctrine:migrations:migrate --no-interaction
+docker-compose run --rm php bin/console doctrine:migrations:migrate --no-interaction
 ```
 
 Executar fixtures
   * Será um usuário para teste da API aplicação. (User: admin, Senha: secret) 
      
 ```
-$ docker-compose run --rm php74-container bin/console -e test doctrine:fixtures:load
+docker-compose run --rm php74-container bin/console -e test doctrine:fixtures:load
 ```
 
 ## Execução dos testes
 
 Criar banco de teste
 ```
-$ docker exec -it  php74-container php bin/console -e test doctrine:database:create
+docker exec -it  php74-container php bin/console -e test doctrine:database:create
 ```
 Criar estrutura do banco 
 ```
-$ docker exec -it  php74-container php bin/console -e test doctrine:schema:create
+docker exec -it  php74-container php bin/console -e test doctrine:schema:create
 ```
 Executar fixtures para criação do usuário de teste
 ```
-$ docker exec -it  php74-container bin/console -e test doctrine:fixtures:load -n
+docker exec -it  php74-container bin/console -e test doctrine:fixtures:load -n
 ```
 Executar testes da aplicação
 ```
-$ docker exec -it  php74-container php ./vendor/bin/phpunit
+docker exec -it  php74-container php ./vendor/bin/phpunit
 ```
 
 ## Acessar sistema
