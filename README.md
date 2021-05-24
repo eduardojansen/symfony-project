@@ -2,7 +2,6 @@
 
 ## Requisitos para instalar a aplicação
 
-- [Composer](https://getcomposer.org/download/)
 - [Docker](https://docs.docker.com/get-docker/)
 
 ## Instalando projeto
