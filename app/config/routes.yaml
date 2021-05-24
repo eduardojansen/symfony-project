@@ -1,3 +1,13 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+people:
+  path: /people
+  controller: App\Controller\PeopleController::index
+  methods:
+    - GET
+shiporders:
+  path: /shiporders
+  controller: App\Controller\ShipordersController::index
+  methods:
+    - GET
