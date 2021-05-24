@@ -67,17 +67,23 @@ $ docker exec -it  php74-container php ./vendor/bin/phpunit
 ## Acessar sistema
 
 #### Importar arquivos XML
-    * http://localhost:8080/index
+
+Anexe apenas arquivos XML, podendo anexar mais de um arquivo por vez. Após o upload, será exibido uma lista com os arquivos aptos para serem processados para o sisrtema.
+
+* http://localhost:8080/index
     
-## Acesso a API
+# Acesso a API
 
 Os endpoints da API são acessíveis apenas para usuários autenticados. O usuário possui um token e esse token precisa ser enviado no cabeçalho de cada requisição, caso contrário será retornando um erro `HTTP 401`.
 
-#### Login
- 
+**Login**
+---- 
 Para gerar o token faça um POST para rota de login que será retornado um objeto com o `access_token`
 
-* Request
+O acesso pode ser feito usando as seguintes credenciais, desde que teha execuatdo o comando para executação das fixtures no ambiente de testes. 
+  * User: admin | Senha: secret
+
+##### Request
 ```
 curl --request POST \
   --url http://localhost:8080/login \
@@ -89,7 +95,7 @@ curl --request POST \
 }'
 ```
 
-* Response 
+##### Response
 
 ```
 {
@@ -97,12 +103,148 @@ curl --request POST \
 }
 ```
 
-## Endpoints
+**People**
+----
+  Retorna um JSON com todos as pessoas cadastradas.
 
-* GET http://localhost:8080/people
+* **URL**
 
-* GET http://localhost:8080/shiporders
+  http://localhost:8080/people
 
+
+* **Method:**
+
+  `GET`
+  
+*  **Query Params**
+   * Ordenar pelo campo code ou qualquer outra campo da entidade.  
+      * `sort[code]=DESC` ou `sort[name]=DESC`
+   * Filtrar por nome "Name 1" e código "1"
+      * `?name=Name%201&code=1`
+
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+```
+{
+  "success": true,
+  "currentPage": 1,
+  "perPage": 5,
+  "data": [
+    {
+      "id": 4,
+      "code": 1,
+      "name": "Name 1",
+      "phones": [
+        "2345678",
+        "1234567"
+      ]
+    },
+    {
+      "id": 5,
+      "code": 2,
+      "name": "Name 2",
+      "phones": [
+        "4444444"
+      ]
+    },
+    {
+      "id": 6,
+      "code": 3,
+      "name": "Name 3",
+      "phones": [
+        "7777777",
+        "8888888"
+      ]
+    }
+  ]
+}
+```
  
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Falha na autenticação." }`
+
+
+
+**People**
+----
+  Retorna um JSON com todos as encomendas.
+
+* **URL**
+
+  http://localhost:8080/shiporders
+
+
+* **Method:**
+
+  `GET`
+  
+*  **Query Params**
+   * Ordenar pelo campo code ou qualquer outra campo da entidade.  
+      * `sort[code]=DESC`
+   * Filtrar por nome "Name 1" e código "1"
+      * `?code=1`
+
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+```
+{
+  "success": true,
+  "currentPage": 1,
+  "perPage": 5,
+  "data": [
+    {
+      "id": 1,
+      "code": 3,
+      "person": {
+        "id": 6,
+        "code": 3,
+        "name": "Name 3",
+        "phones": [
+          "7777777",
+          "8888888"
+        ]
+      },
+      "shipto": {
+        "name": "Name 9",
+        "address": "Address 9",
+        "city": "City 9",
+        "country": "Country 9"
+      },
+      "items": [
+        {
+          "id": 1,
+          "title": "Title 9",
+          "note": "Note 3",
+          "quantity": 5,
+          "prince": 1.12
+        },
+        {
+          "id": 2,
+          "title": "Title",
+          "note": "Note 4",
+          "quantity": 2,
+          "prince": 77.12
+        }
+      ]
+    }
+  ]
+}
+```
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Falha na autenticação." }`
+
+
+
 
     
