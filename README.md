@@ -1,4 +1,4 @@
-# Projeto Symfony
+ # Projeto Symfony
 
 ## Requisitos para instalar a aplicação
 
@@ -71,7 +71,7 @@ Anexe apenas arquivos XML, podendo anexar mais de um arquivo por vez. Após o up
 
 * http://localhost:8080/index
     
-# Acesso a API
+## API
 
 Os endpoints da API são acessíveis apenas para usuários autenticados. O usuário possui um token e esse token precisa ser enviado no cabeçalho de cada requisição, caso contrário será retornando um erro `HTTP 401`.
 
