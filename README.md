@@ -44,6 +44,17 @@ Executar fixtures
 docker exec -it  php74-container bin/console doctrine:fixtures:load
 ```
 
+Criar dirertório que armazerá o upload temporário
+```
+docker exec -it  php74-container mkdir xml_uploads
+```
+
+Alterar permissão da pasta criada
+```
+docker exec -it  php74-container mkdir chmod 777 xml_uploads
+``````
+
+
 ## Execução dos testes
 
 Criar banco de teste
