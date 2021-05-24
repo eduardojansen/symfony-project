@@ -24,24 +24,24 @@ docker-compose up --build
 
 Instalar dependências do projeto
 ```
-docker-compose run --rm php74-container composer install --ignore-platform-reqs
+docker exec -it php74-container composer install --ignore-platform-reqs
 ```
 
 Criar banco de dados
 ```
-docker-compose run --rm php bin/console doctrine:database:create
+docker exec -it php74-container bin/console doctrine:database:create
 ```
 
 Executar migration
 ```
-docker-compose run --rm php bin/console doctrine:migrations:migrate --no-interaction
+docker exec -it php74-container bin/console doctrine:migrations:migrate --no-interaction
 ```
 
 Executar fixtures
   * Será um usuário para teste da API aplicação. (User: admin, Senha: secret) 
      
 ```
-docker-compose run --rm php74-container bin/console -e test doctrine:fixtures:load
+docker exec -it  php74-container bin/console -e test doctrine:fixtures:load
 ```
 
 ## Execução dos testes
