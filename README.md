@@ -41,7 +41,7 @@ Executar fixtures
   * Será um usuário para teste da API aplicação. (User: admin, Senha: secret) 
      
 ```
-docker exec -it  php74-container bin/console -e test doctrine:fixtures:load
+docker exec -it  php74-container bin/console doctrine:fixtures:load
 ```
 
 ## Execução dos testes
