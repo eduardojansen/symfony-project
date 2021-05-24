@@ -1,5 +1,4 @@
 # Projeto Symfony
-Fast lightweight Docker network using PHP MySQL Nginx and Node
 
 ## Requisitos para instalar a aplicação
 
