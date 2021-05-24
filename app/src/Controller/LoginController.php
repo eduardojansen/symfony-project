@@ -50,6 +50,12 @@ class LoginController extends AbstractController
             'username' => $jsonData->username,
         ]);
 
+        if (!$user) {
+            return new JsonResponse([
+                'erro' => 'Usuário ou senha inválidos'
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
         if (!$this->encoder->isPasswordValid($user, $jsonData->password)) {
             return new JsonResponse([
                 'erro' => 'Usuário ou senha inválidos'
